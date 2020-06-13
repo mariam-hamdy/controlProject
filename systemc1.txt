@@ -1,0 +1,40 @@
+
+  /* Outport: '<Root>/Out1' incorporates:
+   *  DiscreteFilter: '<S1>/1//S(z)'
+   */
+  rtY.Out1 = uSz_tmp;
+
+  /* Update for DiscreteFilter: '<S1>/T(z)' incorporates:
+   *  Inport: '<Root>/In1'
+   */
+  rtDW.Tz_states[1] = rtDW.Tz_states[0];
+  rtDW.Tz_states[0] = rtU.In1;
+
+  /* Update for DiscreteFilter: '<S1>/R(z)' incorporates:
+   *  Inport: '<Root>/In2'
+   */
+  rtDW.Rz_states[1] = rtDW.Rz_states[0];
+  rtDW.Rz_states[0] = rtU.In2;
+
+  /* Update for DiscreteFilter: '<S1>/1//S(z)' */
+  rtDW.uSz_states[1] = rtDW.uSz_states[0];
+  rtDW.uSz_states[0] = uSz_tmp;
+}
+
+/* Model initialize function */
+void Subsystem_initialize(void)
+{
+  /* (no initialization code required) */
+}
+
+/* Model terminate function */
+void Subsystem_terminate(void)
+{
+  /* (no terminate code required) */
+}
+
+/*
+ * File trailer for generated code.
+ *
+ * [EOF]
+ */
