@@ -949,18 +949,18 @@ fprintf(fileID1,'};\n')
 fclose(fileID1);
 simulate_RST(Ts, Bp, Ap, R, S, T, Bm, Am, dist, handles);
 %12/6/2020 
-% C-Code generator,to produce well-structured c-code for the closed loop control system
+% C-Code automated generator,to produce well-structured c-code for the closed loop control system
 %made by Zeinab Ismail, deliverable number 3
-fid = fopen('types1.txt'); %open text file conatian information
-F1 = fread(fid,'*char'); % put contents of that file in a variable F1
-fclose(fid); %close file
-fid1 = fopen('rtwtypes.h','w'); %open a new text file for generation of code
-fprintf(fid1,F1); % put the variable F1 in the text file to be generated
+fid = fopen('types1.txt'); 
+F1 = fread(fid,'*char');
+fclose(fid); 
+fid1 = fopen('rtwtypes.h','w'); %open a new file for generation of rtwtypes header file
+fprintf(fid1,F1); 
 fclose(fid1); %close that file
 fid2 = fopen('sysh1.txt');
 F2 = fread(fid2,'*char');
 fclose(fid2);
-fid3 = fopen('Subsystem.h','w');
+fid3 = fopen('Subsystem.h','w');%open a new file for genertion of Subsystem header file
 fprintf(fid3,F2);
 fclose(fid3);
 fid4 = fopen('sysc2.txt');
@@ -969,28 +969,28 @@ fclose(fid4);
 fid5 = fopen('systemc1.txt');
 F4 = fread(fid5,'*char');
 fclose(fid5);
-fid6 = fopen('Subsystem.c','w');
+fid6 = fopen('Subsystem.c','w'); %open a new file for generation of Subsystem c file
 fprintf(fid6,F3);
 fprintf(fid6,' uSz_tmp = ((((');
-fprintf(fid6,num2str(T(1)));
+fprintf(fid6,num2str(T(1)));  % change according to changes in T values
 fprintf(fid6,' * rtU.In1 + ');
-fprintf(fid6,num2str(T(2))); 
+fprintf(fid6,num2str(T(2)));    % change according to changes in T values
 fprintf(fid6,' * rtDW.Tz_states[0]) + ');
-fprintf(fid6,num2str(T(3)));
+fprintf(fid6,num2str(T(3)));      % change according to changes in T values
 fprintf(fid6,' *');fprintf(fid6,'\n');
 fprintf(fid6,'               rtDW.Tz_states[1]) - ((');
-fprintf(fid6,num2str(R(1)));
+fprintf(fid6,num2str(R(1)));  % change according to changes in R values
 fprintf(fid6,' * rtU.In2 + ');
-fprintf(fid6,num2str(R(2)));
+fprintf(fid6,num2str(R(2))); % change according to changes in R values
 fprintf(fid6,' *\n');
 fprintf(fid6,'    rtDW.Rz_states[0])');
 fprintf(fid6,' + ');
-fprintf(fid6,num2str(R(3))); 
+fprintf(fid6,num2str(R(3))); % change according to changes in R values
 fprintf(fid6,' * rtDW.Rz_states[1])) - ');
-fprintf(fid6,num2str(S(2)));
+fprintf(fid6,num2str(S(2)));  % change according to changes in S values
 fprintf(fid6,' *\n');
 fprintf(fid6,'             rtDW.uSz_states[0]) - ');
-fprintf(fid6,num2str(S(3)));
+fprintf(fid6,num2str(S(3)));  % change according to changes in S values
 fprintf(fid6,' *');
 fprintf(fid6,'    rtDW.uSz_states[1];');
 fprintf(fid6,F4);
@@ -998,7 +998,7 @@ fclose(fid6);
 fid7 = fopen('mainc.txt');
 F9 = fread(fid7,'*char');
 fclose(fid7);
-fid8 = fopen('ert_main.c','w');
+fid8 = fopen('ert_main.c','w'); %open file for ert_main C code
 fprintf(fid8,F9);
 fclose(fid8);
 
